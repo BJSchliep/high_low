@@ -9,8 +9,10 @@ namespace cards
     {
         bool isPlaying = true;
         int score = 300;
-        int totalScore = 0;
+        Card card  = new Card();
 
+        Card nextCard = new Card();
+        string guess = "";
         public Director()
         {
             
@@ -28,10 +30,9 @@ namespace cards
 
         public void GetInputs()
         {
-            Random random = new Random();
-            Console.WriteLine($"The card is: {random}");
+            Console.WriteLine($"The card is: {card.value}");
             Console.WriteLine("Higher or Lower? [h/l] ");
-            string guess = Console.ReadLine();
+            guess = Console.ReadLine();
         }
 
         public void DoUpdates()
@@ -41,14 +42,27 @@ namespace cards
                 return;
             }
 
-            int score = 300;
-            // Call Method
-            totalScore += score;
+            nextCard = new Card();
+            int points = nextCard.CompareTo(card, guess);
+            score += points;
 
         }
 
         public void DoOutputs()
         {
+            if (!isPlaying)
+            {
+                return;
+            }
+            Console.WriteLine($"Next card was: {nextCard.value}");
+            Console.WriteLine($"Your score is {score} \n");
+            
+
+            // if ()
+            // {
+
+            // }
+            card = nextCard;
 
         }
 
